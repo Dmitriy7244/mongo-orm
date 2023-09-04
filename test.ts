@@ -1,4 +1,7 @@
-import { assertEquals } from "https://deno.land/std@0.201.0/assert/mod.ts"
+import {
+  assertEquals,
+  assertRejects,
+} from "https://deno.land/std@0.201.0/assert/mod.ts"
 import { createClient, Document } from "./src/mod.ts"
 
 class Doc1 extends Document {
@@ -18,7 +21,5 @@ Deno.test("1", async () => {
   doc1 = await Doc1.get(id)
   assertEquals(doc1.a, 2)
   await doc1.delete()
-  await Doc1.get(id).then(() => {
-    throw new Error("Expected function to throw")
-  }, () => {})
+  await assertRejects(() => Doc1.get(id))
 })
