@@ -1,8 +1,5 @@
-import {
-  assertEquals,
-  assertRejects,
-} from "https://deno.land/std@0.201.0/assert/mod.ts"
-import { createClient, Document } from "./src/mod.ts"
+import { createClient, Document } from "../src/mod.ts"
+import { AnyFunction, assertEquals, assertRejects } from "./deps.ts"
 
 class Doc1 extends Document {
   constructor(public a = 1) {
@@ -12,7 +9,11 @@ class Doc1 extends Document {
 
 await createClient([Doc1])
 
-Deno.test("1", async () => {
+function test(name: string, func: AnyFunction) {
+  Deno.test(name, { sanitizeOps: false, sanitizeResources: false }, func)
+}
+
+test("1", async () => {
   let doc1 = new Doc1()
   const id = await doc1.save()
   assertEquals(typeof id, "string")
