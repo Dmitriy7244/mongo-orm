@@ -1,5 +1,5 @@
 import { createClient, Document } from "../src/mod.ts"
-import { AnyFunction, assertEquals, assertRejects } from "./deps.ts"
+import { assertEquals, assertRejects } from "./deps.ts"
 
 class Doc1 extends Document {
   constructor(public a = 1) {
@@ -9,7 +9,7 @@ class Doc1 extends Document {
 
 await createClient([Doc1])
 
-function test(name: string, func: AnyFunction) {
+function test(name: string, func: () => any) {
   Deno.test(name, { sanitizeOps: false, sanitizeResources: false }, func)
 }
 
