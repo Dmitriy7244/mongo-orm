@@ -36,9 +36,13 @@
     "https://deno.land/std@0.201.0/assert/mod.ts": "37c49a26aae2b254bbe25723434dc28cd7532e444cf0b481a97c045d110ec085",
     "https://deno.land/std@0.201.0/assert/unimplemented.ts": "d56fbeecb1f108331a380f72e3e010a1f161baa6956fd0f7cf3e095ae1a4c75a",
     "https://deno.land/std@0.201.0/assert/unreachable.ts": "4600dc0baf7d9c15a7f7d234f00c23bca8f3eba8b140286aaca7aa998cf9a536",
+    "https://deno.land/std@0.201.0/dotenv/mod.ts": "1da8c6d0e7f7d8a5c2b19400b763bc11739df24acec235dda7ea2cfd3d300057",
     "https://deno.land/std@0.201.0/fmt/colors.ts": "87544aa2bc91087bb37f9c077970c85bfb041b48e4c37356129d7b450a415b6f",
     "https://raw.githubusercontent.com/Dmitriy7244/deno-std/main/env.ts": "30e22422d3522e1a8b060f106e7fe69f4ec5f63cfcc52a7f1d27a609f6c29f43",
-    "https://raw.githubusercontent.com/Dmitriy7244/deno-std/main/mod.ts": "410ffba62b8740a73ef46a677998ba6d389659f4e67004c81a532ddbad7bc629"
+    "https://raw.githubusercontent.com/Dmitriy7244/deno-std/main/mod.ts": "410ffba62b8740a73ef46a677998ba6d389659f4e67004c81a532ddbad7bc629",
+    "https://raw.githubusercontent.com/Dmitriy7244/deno-std/main/src/deps.ts": "2b5942e9e0bcd6f224358395e32dfe467e93864408679d3da0cbd9913d979e89",
+    "https://raw.githubusercontent.com/Dmitriy7244/deno-std/main/src/env.ts": "8165ef1866ba0af2ddc86605f81f4906d2a21db92d789ff46d8f6a2e20ad0eb2",
+    "https://raw.githubusercontent.com/Dmitriy7244/deno-std/main/src/mod.ts": "8bab79bd88e8a9809dfe27806673cb3c2964f63f9085785cb1f248a0fd4ba7f6"
   },
   "npm": {
     "specifiers": {
