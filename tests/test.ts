@@ -1,4 +1,4 @@
-import { createClient, Document } from "../src/mod.ts"
+import { createClient, Document } from "../src/_mod.ts"
 import { assertEquals, assertRejects } from "./deps.ts"
 
 class Doc1 extends Document {
@@ -22,5 +22,8 @@ test("1", async () => {
   doc1 = await Doc1.get(id)
   assertEquals(doc1.a, 2)
   await doc1.delete()
+  await doc1.save()
+  await Doc1.delete(doc1._id!)
   await assertRejects(() => Doc1.get(id))
+  // doc1 = await Doc1.find({ a: 1 })
 })
