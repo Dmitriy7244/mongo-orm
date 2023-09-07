@@ -58,10 +58,15 @@ class DocumentRepo<D extends Document = Document> {
   }
 
   async deleteById(id: ID) {
-    await this.collection.deleteOne({ _id: new ObjectId(id) })
+    const filter = { _id: new ObjectId(id) } as Partial<D>
+    await this.deleteBy(filter)
   }
 
-  async tryFind(filter: Partial<D>) {
+  async deleteBy(filter: Partial<D> | D = {}) {
+    await this.collection.deleteOne(filter)
+  }
+
+  async tryFind(filter: Partial<D> = {}) {
     const doc = await this.collection.findOne(filter)
     return doc as D | null
   }

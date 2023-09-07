@@ -1,3 +1,4 @@
+import { ObjectId } from "../src/deps.ts"
 import { createClient, Document, DocumentRepo } from "../src/mod.ts"
 
 class Doc1 extends Document {
@@ -20,6 +21,6 @@ test("1", async () => {
   await doc1Repo.get(id)
   console.log(await doc1Repo.tryFind({ a: 3 }))
   console.log(await doc1Repo.find({ a: 2 }))
-  console.log(await doc1Repo.findAll())
+  console.log(await doc1Repo.findAll({ _id: new ObjectId() }))
   console.log(await doc1Repo.findAll({ a: 2 }))
 })
