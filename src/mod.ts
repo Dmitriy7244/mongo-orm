@@ -1,4 +1,4 @@
-import { Db, env, MongoClient, ObjectId } from "./deps.ts"
+import { Class, Db, env, MongoClient, ObjectId } from "./deps.ts"
 
 type ID = ObjectId | string
 
@@ -19,10 +19,10 @@ class Document {
   _id?: ObjectId
 }
 
-class DocumentRepo<M extends typeof Document = typeof Document> {
+class DocumentRepo<D extends Document = Document> {
   db?: Db
 
-  constructor(private model: M) {}
+  constructor(private model: Class<D>) {}
 
   private get collection() {
     const db = this.db
@@ -30,7 +30,7 @@ class DocumentRepo<M extends typeof Document = typeof Document> {
     return db.collection(this.model.name)
   }
 
-  async save(doc: InstanceType<M>) {
+  async save(doc: D) {
     doc._id = doc._id ?? new ObjectId()
     await this.collection.updateOne(
       { _id: doc._id },
@@ -49,10 +49,10 @@ class DocumentRepo<M extends typeof Document = typeof Document> {
   async tryGet(id: ID) {
     const _id = new ObjectId(id)
     const doc = await this.collection.findOne({ _id })
-    return doc as InstanceType<M> | null
+    return doc as D | null
   }
 
-  async delete(doc: InstanceType<M>) {
+  async delete(doc: D) {
     if (!doc._id) throw new Error(`No document id (doc: ${doc})`)
     await this.deleteById(doc._id)
   }
@@ -61,16 +61,16 @@ class DocumentRepo<M extends typeof Document = typeof Document> {
     await this.collection.deleteOne({ _id: new ObjectId(id) })
   }
 
-  async tryFind(filter: Partial<InstanceType<M>>) {
+  async tryFind(filter: Partial<D>) {
     const doc = await this.collection.findOne(filter)
-    return doc as InstanceType<M> | null
+    return doc as D | null
   }
 
-  async findAll(filter: Partial<InstanceType<M>> = {}) {
-    return await this.collection.find(filter).toArray() as InstanceType<M>[]
+  async findAll(filter: Partial<D> = {}) {
+    return await this.collection.find(filter).toArray() as D[]
   }
 
-  async find(filter: Partial<InstanceType<M>> = {}) {
+  async find(filter: Partial<D> = {}) {
     const doc = await this.tryFind(filter)
     const _msg = `Document not found (filter: ${JSON.stringify(filter)})`
     if (!doc) throw new Error(_msg)
