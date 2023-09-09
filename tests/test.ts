@@ -19,6 +19,8 @@ function test(name: string, func: () => any) {
   Deno.test(name, { sanitizeOps: false, sanitizeResources: false }, func)
 }
 
+// TODO: normal tests
+
 test("1", async () => {
   let doc1 = new Doc1()
   const id = await doc1Repo.save(doc1)
@@ -28,4 +30,6 @@ test("1", async () => {
   console.log(await doc1Repo.find({ a: 2 }))
   console.log(await doc1Repo.findAll({ _id: new ObjectId() }))
   console.log(await doc1Repo.findAll({ a: 2 }))
+  console.log(await doc1Repo.findLast({ a: 2 }))
+  console.log(await doc1Repo.tryFindLast({ a: 4 }))
 })
